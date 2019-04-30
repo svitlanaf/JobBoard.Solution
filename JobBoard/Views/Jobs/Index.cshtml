@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add a Job Opening</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    @using JobBoard.Models;
+    <ul>
+    @foreach (JobOpening jobOpening in Model)
+    {
+        <li>Title: @jobOpening.GetTitle()</li>
+        <li>Description: @jobOpening.GetDescription()</li>
+        <li>Salary: @jobOpening.GetPay()</li>
+
+        @foreach(KeyValuePair<string, string> entry in @jobOpening.GetContactInfo())
+        {
+            <li>@entry.Key: @entry.Value</li>
+        }
+        <p></p>
+    }
+
+
+    </ul>
+    <a href="/jobs/new">Add a new Job Opening</a>
+</body>
+</html>
+
+
+<!-- string title, string description, int pay, string name, string email, string phone -->
